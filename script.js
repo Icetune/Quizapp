@@ -95,7 +95,6 @@ let AUDIO_FAIL = new Audio('sounds/wrong.mp3');
 
 function init() {
 
-    document.getElementById('question_amount').innerHTML = questions.length;
     showQuestion();
 
 }
@@ -139,7 +138,6 @@ function updateToNextQuestion() {
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-    document.getElementById('current-question').innerHTML = `${currentQuestion + 1}`;
 }
 
 
@@ -151,30 +149,41 @@ function answer(selection) {
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
-        AUDIO_SUCCESS.play();
-        document.getElementById(selection).parentNode.classList.add('bg-success');
-        rightAnswers++;
+
+        rightAnswer(selection);
+
     }
     else {
-        AUDIO_FAIL.play();
-        document.getElementById(selection).parentNode.classList.add('bg-danger');
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+
+        wrongAnswer(selection, idOfRightAnswer);
+
     }
 
     document.getElementById('next-button').disabled = false;
 
-    //        ***Meine Lösung***
+}
 
-    // let correct = questions[currentQuestion];
 
-    //  if (answer_x == `answer_${correct['right_answer']}`) {
-    //     console.log('richtig');
-    //  }
-    //  else {
-    //     console.log('falsch');
-    //  }
+function rightAnswer(selection) {
 
-    //        ***Meine Lösung***
+    AUDIO_SUCCESS.play();
+    document.getElementById(selection).parentNode.classList.remove('hover-bg');
+    document.getElementById(selection).parentNode.classList.add('right-card');
+    document.getElementById(selection).classList.add('right-letter');
+    rightAnswers++;
+
+}
+
+function wrongAnswer(selection, idOfRightAnswer) {
+
+    AUDIO_FAIL.play();
+    document.getElementById(selection).parentNode.classList.remove('hover-bg');
+    document.getElementById(selection).parentNode.classList.add('wrong-card');
+    document.getElementById(selection).classList.add('wrong-letter');
+
+    document.getElementById(idOfRightAnswer).parentNode.classList.remove('hover-bg');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('right-card');
+    document.getElementById(idOfRightAnswer).classList.add('right-letter');
 
 }
 

@@ -13,85 +13,89 @@
 
 </head>
 
-<body onload="init()">
+<body>
 
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Navbar</span>
-        </div>
-    </nav>
+    <div class="progress">
+        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;">25%</div>
+    </div>
 
     <div class="container">
 
-        <div class="card quiz-card" id="end-screen" style="display: none;">
-            <img src="img/trophy.png" class="card-img-top">
-            <div class="card-body">
+        <div class="card mb-3">
+            <div class="left">
 
-                <div class="text-center">
-                    Quiz beendet!
+                <img class="left-logo" src="img/logo.png">
+
+                <div class="left-link-box-active">
+                    <div class="left-white-box"></div>
+                    <a class="left-link" href="#">HTML</a>    
                 </div>
-
-                <div class="text-center">
-                    Du hast <b id="solved-questions">XX</b> von <b id="questions-amount">XX</b> Fragen richtig
-                    beantwortet!
+                <div class="left-link-box">
+                    <div class="left-white-box" style="display:none;"></div>
+                    <a class="left-link" href="#">CSS</a> 
                 </div>
-
-                <div class="btn-row">
-                    <button onclick="restartGame()" class="btn btn-primary">Erneut spielen</button>
+                <div class="left-link-box">
+                    <div class="left-white-box" style="display:none;"></div>
+                    <a class="left-link" href="#">JS</a>    
+                </div>
+                <div class="left-link-box">
+                    <div class="left-white-box" style="display:none;"></div>
+                    <a class="left-link" href="#">JAVA</a>
                 </div>
 
             </div>
+            <div class="right">
 
+                <div class="card-body">
+                    <h5 class="card-title" id="question_text">Wer hat HTML erfunden?</h5>
+    
+                    <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_1')">
+                        <span class="answer-letter" id="answer_1">
+                            A
+                        </span>
+                        <div class="card-body">
+                            Robbie Williams
+                        </div>
+                    </div>
+    
+                    <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_2')">
+                        <span class="answer-letter" id="answer_2">
+                            B
+                        </span>
+                        <div class="card-body">
+                            Lady Gaga
+                        </div>
+                    </div>
+    
+                    <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_3')">
+                        <span class="answer-letter" id="answer_3">
+                            C
+                        </span>
+                        <div class="card-body">
+                            Tim Berners
+                        </div>
+                    </div>
+    
+                    <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_4')">
+                        <span class="answer-letter" id="answer_4">
+                            D
+                        </span>
+                        <div class="card-body">
+                            Justin Bieber
+                        </div>
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="button" class="btn btn-primary" disabled><img src="img/back.png"></button>
+                        <button type="button" class="btn btn-primary" disabled><img src="img/next.png"></button>
+                    </div>
+
+
+            </div>
+            
         </div>
 
-        <div class="card quiz-card" id="question-body">
-            <img src="img/pencil.jpg" class="card-img-top">
-
-            <div class="progress">
-                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;">25%</div>
-            </div>
-
-            <div class="card-body">
-                <h5 class="card-title" id="question_text">Frage</h5>
-
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')">
-                    <div class="card-body" id="answer_1">
-                        Antwort
-                    </div>
-                </div>
-
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_2')">
-                    <div class="card-body" id="answer_2">
-                        Antwort
-                    </div>
-                </div>
-
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_3')">
-                    <div class="card-body" id="answer_3">
-                        Antwort
-                    </div>
-                </div>
-
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_4')">
-                    <div class="card-body" id="answer_4">
-                        Antwort
-                    </div>
-                </div>
-
-
-                <div class="question-footer">
-                    <span>
-                        <b id="current-question"></b> von <b id="question_amount"></b> Fragen
-                    </span>
-                    <button class="btn btn-primary" id="next-button" disabled onclick="nextQuestion()">Nächste
-                        Frage</button>
-                </div>
-
-
-            </div>
-        </div>
     </div>
-
 
 
 </body>
