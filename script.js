@@ -83,7 +83,7 @@ let questions = [
 
 ];
 
-
+//////////////////////////////////////////////////////////////////////
 
 let rightAnswers = 0;
 let currentQuestion = 0;
@@ -95,17 +95,22 @@ let AUDIO_FAIL = new Audio('sounds/wrong.mp3');
 //----------------JAVA SCRIPT CODE----------------//
 
 
-function init() {
+function init() { //The game starts
 
-    document.getElementById('start-screen').style = `display: none;`;
+    document.getElementById('start-screen').style = ``;
     document.getElementById('end-screen').style = `display: none;`;
-    document.getElementById('question-body').style = ``;
-
-    showQuestion();
+    document.getElementById('question-body').style = `display: none;`;
 
 }
 
-function showQuestion() {
+function showFirstQuestion() {
+    document.getElementById('start-screen').style = `display: none;`;
+    document.getElementById('end-screen').style = `display: none;`;
+    document.getElementById('question-body').style = ``;
+    showQuestion();
+}
+
+function showQuestion() { //The next question will be shown, or the End-Screen
 
     if (gameIsOver()) {
         showEndscreen();
@@ -117,7 +122,7 @@ function showQuestion() {
 
 }
 
-function answer(selection) {
+function answer(selection) { // Checks if the answer is right or wrong
 
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1);
@@ -134,7 +139,7 @@ function answer(selection) {
 
 }
 
-function nextQuestion() {
+function nextQuestion() { // shows next question and resets last one
 
     currentQuestion++;
     resetQuestion();
@@ -142,7 +147,7 @@ function nextQuestion() {
 
 }
 
-function restartGame() {
+function restartGame() { // restarts the game
 
     rightAnswers = 0;
     currentQuestion = 0;
@@ -169,9 +174,10 @@ function gameIsOver() {
 }
 
 function showEndscreen() {
-    document.getElementById('end-screen').style = ``;
+    console.log('Hallo ich lebe')
     document.getElementById('question-body').style = `display: none;`;
     document.getElementById('start-screen').style = `display: none;`;
+    document.getElementById('end-screen').style = ``;
     document.getElementById('solved-questions').innerHTML = rightAnswers;
     document.getElementById('questions-amount').innerHTML = questions.length;
 }

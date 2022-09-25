@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizapp</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -13,7 +15,7 @@
 
 </head>
 
-<body>
+<body onload="init()">
 
     <div class="progress">
         <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;">25%</div>
@@ -44,7 +46,27 @@
                 </div>
 
             </div>
+
+
+
             <div class="right">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div id="start-screen" class="right-screen start-bg">
 
@@ -52,14 +74,30 @@
                     <h2 class="pt-bold">The Awesome HTML Quiz</h2>
                     <p class="pt-regular">Ready for the Challange?</p>
 
-                    <button onclick="init()" type="button" class="btn btn-danger">START NOW <img class="start-btn-img"
+                    <button onclick="showFirstQuestion()" type="button" class="btn btn-danger">START NOW <img class="start-btn-img"
                             src="img/next.png"></button>
 
                 </div>
 
 
 
-                <div id="question-body" style="display: none;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div id="question-body">
 
                     <div class="card-body">
                         <h5 class="card-title" id="question_text">Wer hat HTML erfunden?</h5>
@@ -109,7 +147,17 @@
 
 
 
-                <div class="right-screen" id="end-screen" style="display: none;">
+
+
+
+
+
+
+
+
+
+
+                <div class="right-screen" id="end-screen">
 
                     <img class="endscreen-logo" src="img/brain result.png">
                     <span class="complete-text">
@@ -128,6 +176,21 @@
                     <button type="button" class="btn btn-link">REPLAY</button>
 
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
 
