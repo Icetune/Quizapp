@@ -92,14 +92,18 @@ let AUDIO_SUCCESS = new Audio('sounds/right.mp3');
 let AUDIO_FAIL = new Audio('sounds/wrong.mp3');
 
 
+//----------------JAVA SCRIPT CODE----------------//
+
 
 function init() {
+
+    document.getElementById('start-screen').style = `display: none;`;
+    document.getElementById('end-screen').style = `display: none;`;
+    document.getElementById('question-body').style = ``;
 
     showQuestion();
 
 }
-
-
 
 function showQuestion() {
 
@@ -113,6 +117,53 @@ function showQuestion() {
 
 }
 
+function answer(selection) {
+
+    let question = questions[currentQuestion];
+    let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if (answerIsCorrect(selectedQuestionNumber, question)) {
+        rightAnswer(selection);
+    }
+    else {
+        wrongAnswer(selection, idOfRightAnswer);
+    }
+
+    document.getElementById('next-button').disabled = false;
+
+}
+
+function nextQuestion() {
+
+    currentQuestion++;
+    resetQuestion();
+    showQuestion();
+
+}
+
+function restartGame() {
+
+    rightAnswers = 0;
+    currentQuestion = 0;
+
+    document.getElementById('end-screen').style = `display: none;`;
+    document.getElementById('question-body').style = ``;
+
+    init();
+
+}
+
+//----------------JAVA SCRIPT CODE----------------//
+
+
+
+
+
+//----------------JAVA SCRIPT CODE HELP FUNCTIONS----------------//
+
+//////////////////////////////////////////////////////////////////
+
 function gameIsOver() {
     return currentQuestion >= questions.length;
 }
@@ -120,6 +171,7 @@ function gameIsOver() {
 function showEndscreen() {
     document.getElementById('end-screen').style = ``;
     document.getElementById('question-body').style = `display: none;`;
+    document.getElementById('start-screen').style = `display: none;`;
     document.getElementById('solved-questions').innerHTML = rightAnswers;
     document.getElementById('questions-amount').innerHTML = questions.length;
 }
@@ -134,35 +186,19 @@ function updateToNextQuestion() {
     let question = questions[currentQuestion];
 
     document.getElementById('question_text').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    document.getElementById('answer_text_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_text_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_text_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_text_4').innerHTML = question['answer_4'];
 }
 
+//////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////
 
-function answer(selection) {
-
-    let question = questions[currentQuestion];
-    let selectedQuestionNumber = selection.slice(-1);
-    let idOfRightAnswer = `answer_${question['right_answer']}`;
-
-    if (selectedQuestionNumber == question['right_answer']) {
-
-        rightAnswer(selection);
-
-    }
-    else {
-
-        wrongAnswer(selection, idOfRightAnswer);
-
-    }
-
-    document.getElementById('next-button').disabled = false;
-
+function answerIsCorrect(selectedQuestionNumber, question) {
+    return selectedQuestionNumber == question['right_answer']
 }
-
 
 function rightAnswer(selection) {
 
@@ -187,37 +223,24 @@ function wrongAnswer(selection, idOfRightAnswer) {
 
 }
 
+//////////////////////////////////////////////////////////////////
 
-
-function nextQuestion() {
-
-    currentQuestion++;
-    resetQuestion();
-    showQuestion();
-
-}
-
+//////////////////////////////////////////////////////////////////
 
 function resetQuestion() {
 
     for (let i = 1; i < 5; i++) {
-        document.getElementById(`answer_${i}`).parentNode.classList.remove('bg-success');
-        document.getElementById(`answer_${i}`).parentNode.classList.remove('bg-danger');
+        document.getElementById(`answer_${i}`).parentNode.classList.remove('right-card');
+        document.getElementById(`answer_${i}`).parentNode.classList.remove('wrong-card');
+        document.getElementById(`answer_${i}`).classList.remove('right-letter');
+        document.getElementById(`answer_${i}`).classList.remove('wrong-letter');
+        document.getElementById(`answer_${i}`).parentNode.classList.add('hover-bg');
     }
 
     document.getElementById('next-button').disabled = true;
 
 }
 
+//////////////////////////////////////////////////////////////////
 
-function restartGame() {
-
-    rightAnswers = 0;
-    currentQuestion = 0;
-
-    document.getElementById('end-screen').style = `display: none;`;
-    document.getElementById('question-body').style = ``;
-
-    init();
-
-}
+//----------------JAVA SCRIPT CODE HELP FUNCTIONS----------------//
