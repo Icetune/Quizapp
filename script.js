@@ -130,8 +130,8 @@ function answer(selection) { // Checks if the answer is right or wrong
         wrongAnswer(selection, idOfRightAnswer);
     }
 
-    document.getElementById('next-button').disabled = false;
-    document.getElementById('next-button').classList.add('btn-enabled');
+    enableNextBtn();
+    lockAnswers();
 
 }
 
@@ -140,6 +140,7 @@ function nextQuestion() { // shows next question and resets last one
     currentQuestion++;
     resetQuestion();
     showQuestion();
+    releaseAnswers();
 
 }
 
@@ -167,12 +168,33 @@ function otherQuiz() {
 //----------------JAVA SCRIPT CODE----------------//
 
 
-
+function test() {
+    console.log('alhamdudilah')
+}
 
 
 //----------------JAVA SCRIPT CODE HELP FUNCTIONS----------------//
 
 //////////////////////////////////////////////////////////////////
+
+function enableNextBtn() {
+    document.getElementById('next-button').disabled = false;
+    document.getElementById('next-button').classList.add('btn-enabled');
+}
+
+function lockAnswers() {
+    document.getElementById('card1').style.pointerEvents = 'none';
+    document.getElementById('card2').style.pointerEvents = 'none';
+    document.getElementById('card3').style.pointerEvents = 'none';
+    document.getElementById('card4').style.pointerEvents = 'none';
+}
+
+function releaseAnswers() {
+    document.getElementById('card1').style.pointerEvents = 'auto'; 
+    document.getElementById('card2').style.pointerEvents = 'auto'; 
+    document.getElementById('card3').style.pointerEvents = 'auto'; 
+    document.getElementById('card4').style.pointerEvents = 'auto'; 
+}
 
 function gameIsOver() {
     return currentQuestion >= questions.length;
@@ -293,7 +315,7 @@ function questionsHTML() {
         <div class="card-body">
             <h5 class="card-title" id="question_text">Wer hat HTML erfunden?</h5>
 
-            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_1')">
+            <div id="card1" class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_1')">
                 <span class="answer-letter" id="answer_1">
                     A
                 </span>
@@ -302,7 +324,7 @@ function questionsHTML() {
                 </div>
             </div>
 
-            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_2')">
+            <div id="card2" class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_2')">
                 <span class="answer-letter" id="answer_2">
                     B
                 </span>
@@ -311,7 +333,7 @@ function questionsHTML() {
                 </div>
             </div>
 
-            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_3')">
+            <div id="card3" class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_3')">
                 <span class="answer-letter" id="answer_3">
                     C
                 </span>
@@ -320,7 +342,7 @@ function questionsHTML() {
                 </div>
             </div>
 
-            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_4')">
+            <div id="card4" class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_4')">
                 <span class="answer-letter" id="answer_4">
                     D
                 </span>

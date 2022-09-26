@@ -2,7 +2,7 @@
 
 .container {
     font-family: 'Rubik';
-    min-height: 100vh;
+    min-height: calc(100vh - 16px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,19 +92,20 @@
 
 .start-bg {
     background-image: url(./img/brainbg.jpg);
+    background-size: contain;
     background-position: center;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
 .pt-bold {
-    font-family: 'PT Sans'!important;
+    font-family: 'PT Sans' sans-serif;
     font-style: normal;
     font-weight: 700;
 }
 
 .pt-regular {
-    font-family: 'PT Sans'!important;
+    font-family: 'PT Sans' sans-serif;
     font-style: normal;
     font-weight: 400;
 }
