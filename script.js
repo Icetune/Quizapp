@@ -96,23 +96,18 @@ let AUDIO_FAIL = new Audio('sounds/wrong.mp3');
 
 
 function init() { //The game starts
-
-    document.getElementById('start-screen').style = ``;
-    document.getElementById('end-screen').style = `display: none;`;
-    document.getElementById('question-body').style = `display: none;`;
-
+    startScreenHTML();
 }
 
 function showFirstQuestion() {
-    document.getElementById('start-screen').style = `display: none;`;
-    document.getElementById('end-screen').style = `display: none;`;
-    document.getElementById('question-body').style = ``;
+    questionsHTML();
     showQuestion();
 }
 
 function showQuestion() { //The next question will be shown, or the End-Screen
 
     if (gameIsOver()) {
+        updateProgressBar();
         showEndscreen();
     }
     else {
@@ -136,6 +131,7 @@ function answer(selection) { // Checks if the answer is right or wrong
     }
 
     document.getElementById('next-button').disabled = false;
+    document.getElementById('next-button').classList.add('btn-enabled');
 
 }
 
@@ -152,11 +148,20 @@ function restartGame() { // restarts the game
     rightAnswers = 0;
     currentQuestion = 0;
 
-    document.getElementById('end-screen').style = `display: none;`;
-    document.getElementById('question-body').style = ``;
-
     init();
 
+}
+
+function previousQuestion() {
+    alert('There is no turning back at this point!');
+}
+
+function joke() {
+    alert('Du hast Freunde mit denen du das teilen willst?!')
+}
+
+function otherQuiz() {
+    alert('other challanges will be available soon')
 }
 
 //----------------JAVA SCRIPT CODE----------------//
@@ -174,17 +179,13 @@ function gameIsOver() {
 }
 
 function showEndscreen() {
-    console.log('Hallo ich lebe')
-    document.getElementById('question-body').style = `display: none;`;
-    document.getElementById('start-screen').style = `display: none;`;
-    document.getElementById('end-screen').style = ``;
+    endScreenHTML();
     document.getElementById('solved-questions').innerHTML = rightAnswers;
     document.getElementById('questions-amount').innerHTML = questions.length;
 }
 
 function updateProgressBar() {
     let percent = Math.round((currentQuestion / questions.length) * 100);
-    document.getElementById('progress-bar').innerHTML = `${percent}%`;
     document.getElementById('progress-bar').style.width = `${percent}%`;
 }
 
@@ -196,6 +197,12 @@ function updateToNextQuestion() {
     document.getElementById('answer_text_2').innerHTML = question['answer_2'];
     document.getElementById('answer_text_3').innerHTML = question['answer_3'];
     document.getElementById('answer_text_4').innerHTML = question['answer_4'];
+
+    if (currentQuestion >= 1) {
+        document.getElementById('previous-button').disabled = false;
+    } else {
+        document.getElementById('previous-button').disabled = true;
+    }
 }
 
 //////////////////////////////////////////////////////////////////
@@ -244,9 +251,121 @@ function resetQuestion() {
     }
 
     document.getElementById('next-button').disabled = true;
+    document.getElementById('next-button').classList.remove('btn-enabled');
 
 }
 
 //////////////////////////////////////////////////////////////////
 
 //----------------JAVA SCRIPT CODE HELP FUNCTIONS----------------//
+
+
+
+
+
+//----------------JAVA SCRIPT HTML SCHNIPSEL----------------//
+
+
+function startScreenHTML() {
+    document.getElementById('rightside').innerHTML = ``;
+    document.getElementById('rightside').innerHTML = `
+    
+    <div id="start-screen" class="right-screen start-bg">
+
+        <h2 class="pt-bold">Welcome to</h2>
+        <h2 class="pt-bold">The Awesome HTML Quiz</h2>
+        <p class="pt-regular">Ready for the Challange?</p>
+
+        <button onclick="showFirstQuestion()" type="button" class="btn btn-danger">START NOW <img class="start-btn-img"
+        src="img/next.png"></button>
+
+    </div>
+    
+    `;
+}
+
+function questionsHTML() {
+    document.getElementById('rightside').innerHTML = ``;
+    document.getElementById('rightside').innerHTML = `
+    
+    <div id="question-body">
+
+        <div class="card-body">
+            <h5 class="card-title" id="question_text">Wer hat HTML erfunden?</h5>
+
+            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_1')">
+                <span class="answer-letter" id="answer_1">
+                    A
+                </span>
+                <div class="card-body" id="answer_text_1">
+                    Robbie Williams
+                </div>
+            </div>
+
+            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_2')">
+                <span class="answer-letter" id="answer_2">
+                    B
+                </span>
+                <div class="card-body" id="answer_text_2">
+                    Lady Gaga
+                </div>
+            </div>
+
+            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_3')">
+                <span class="answer-letter" id="answer_3">
+                    C
+                </span>
+                <div class="card-body" id="answer_text_3">
+                    Tim Berners
+                </div>
+            </div>
+
+            <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_4')">
+                <span class="answer-letter" id="answer_4">
+                    D
+                </span>
+                <div class="card-body" id="answer_text_4">
+                    Justin Bieber
+                </div>
+            </div>
+
+        </div>  
+
+    </div>
+
+    <div class="btn-container">
+    <button onclick="previousQuestion()" id="previous-button" type="button" class="navigation-btn btn-primary" disabled><img src="img/back.png"></button>
+    <button onclick="nextQuestion()" id="next-button" type="button" class="navigation-btn btn-primary" disabled><img src="img/next.png"></button>
+    </div>
+
+    `;
+}
+
+function endScreenHTML() {
+    document.getElementById('rightside').innerHTML = ``;
+    document.getElementById('rightside').innerHTML = `
+    
+    <div class="right-screen" id="end-screen">
+
+        <img class="endscreen-logo" src="img/brain result.png">
+        <span class="complete-text">
+            <p class="p-margin">COMPLETE</p>
+            <p class="p-margin">HTML QUIZ</p>
+        </span>
+        <span class="score-container">
+            <span class="your-score">
+                YOUR SCORE
+            </span>
+            <span class="score">
+                <p class="score-margin" id="solved-questions">5</p>/<p class="score-margin" id="questions-amount">10</p>
+            </span>
+        </span>
+        <button onclick="joke()" type="button" class="btn share-btn btn-primary">SHARE</button>
+        <button onclick="restartGame()" type="button" class="btn replay-btn btn-link">REPLAY</button>
+
+    </div>
+    
+    `;
+}
+
+//----------------JAVA SCRIPT HTML SCHNIPSEL----------------//

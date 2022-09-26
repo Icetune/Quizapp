@@ -18,7 +18,7 @@
 <body onload="init()">
 
     <div class="progress">
-        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;">25%</div>
+        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
     </div>
 
     <div class="container">
@@ -30,174 +30,31 @@
 
                 <div class="left-link-box-active">
                     <div class="left-white-box"></div>
-                    <a class="left-link" href="#">HTML</a>
+                    <a onclick="otherQuiz()" class="left-link" href="#">HTML</a>
                 </div>
                 <div class="left-link-box">
                     <div class="left-white-box" style="display:none;"></div>
-                    <a class="left-link" href="#">CSS</a>
+                    <a onclick="otherQuiz()" class="left-link" href="#">CSS</a>
                 </div>
                 <div class="left-link-box">
                     <div class="left-white-box" style="display:none;"></div>
-                    <a class="left-link" href="#">JS</a>
+                    <a onclick="otherQuiz()" class="left-link" href="#">JS</a>
                 </div>
                 <div class="left-link-box">
                     <div class="left-white-box" style="display:none;"></div>
-                    <a class="left-link" href="#">JAVA</a>
+                    <a onclick="otherQuiz()" class="left-link" href="#">JAVA</a>
                 </div>
 
             </div>
 
 
 
-            <div class="right">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div id="start-screen" class="right-screen start-bg">
-
-                    <h2 class="pt-bold">Welcome to</h2>
-                    <h2 class="pt-bold">The Awesome HTML Quiz</h2>
-                    <p class="pt-regular">Ready for the Challange?</p>
-
-                    <button onclick="showFirstQuestion()" type="button" class="btn btn-danger">START NOW <img class="start-btn-img"
-                            src="img/next.png"></button>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div id="question-body">
-
-                    <div class="card-body">
-                        <h5 class="card-title" id="question_text">Wer hat HTML erfunden?</h5>
-        
-                        <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_1')">
-                            <span class="answer-letter" id="answer_1">
-                                A
-                            </span>
-                            <div class="card-body" id="answer_text_1">
-                                Robbie Williams
-                            </div>
-                        </div>
-        
-                        <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_2')">
-                            <span class="answer-letter" id="answer_2">
-                                B
-                            </span>
-                            <div class="card-body" id="answer_text_2">
-                                Lady Gaga
-                            </div>
-                        </div>
-        
-                        <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_3')">
-                            <span class="answer-letter" id="answer_3">
-                                C
-                            </span>
-                            <div class="card-body" id="answer_text_3">
-                                Tim Berners
-                            </div>
-                        </div>
-        
-                        <div class="card quiz-answer-card mb-2 hover-bg" onclick="answer('answer_4')">
-                            <span class="answer-letter" id="answer_4">
-                                D
-                            </span>
-                            <div class="card-body" id="answer_text_4">
-                                Justin Bieber
-                            </div>
-                        </div>
-    
-                        <div class="btn-container">
-                            <button type="button" class="navigation-btn btn-primary" disabled><img src="img/back.png"></button>
-                            <button onclick="nextQuestion()" id="next-button" type="button" class="navigation-btn btn-primary" disabled><img src="img/next.png"></button>
-                        </div>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="right-screen" id="end-screen">
-
-                    <img class="endscreen-logo" src="img/brain result.png">
-                    <span class="complete-text">
-                        <p class="p-margin">COMPLETE</p>
-                        <p class="p-margin">HTML QUIZ</p>
-                    </span>
-                    <span class="score-container">
-                        <span class="your-score">
-                            YOUR SCORE
-                        </span>
-                        <span>
-                            <p id="solved-questions"></p>/<p id="questions-amount"></p>
-                        </span>
-                    </span>
-                    <button type="button" class="btn share-btn btn-primary">SHARE</button>
-                    <button type="button" class="btn btn-link">REPLAY</button>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div id="rightside" class="right">
             </div>
 
         </div>
 
     </div>
-
 
 </body>
 
